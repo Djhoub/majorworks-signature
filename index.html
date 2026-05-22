@@ -123,38 +123,73 @@
 
         <p class="text-[11px] font-medium text-[#aaa] uppercase tracking-widest">Aperçu en temps réel</p>
 
-        <div class="bg-white rounded-[16px] p-8 md:p-12 flex items-center justify-center min-h-[260px]">
-          <table id="sig-table" cellpadding="0" cellspacing="0" border="0"
-            style="background-color:#f2f2f2;padding:12px;width:280px;border-collapse:collapse;border-radius:12px;">
-            <tbody>
-              <tr>
-                <td style="padding-bottom:17px;">
-                  <table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;">
-                    <tbody>
-                      <tr>
-                        <td style="vertical-align:middle;">
-                          <img src="logo.svg" alt="Major Works" width="122" height="24" style="display:block;border:0;max-width:none;">
-                        </td>
-                        <td align="right" style="vertical-align:middle;">
-                          <img src="icon.svg" alt="" width="35" height="19" style="display:block;border:0;max-width:none;margin-left:auto;">
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </td>
-              </tr>
-              <tr>
-                <td id="sig-info-cell"
-                  style="font-family:'Host Grotesk',Inter,Arial,sans-serif;font-size:10px;color:#000000;line-height:1.4;padding-bottom:17px;">
-                </td>
-              </tr>
-              <tr>
-                <td style="font-family:'Host Grotesk',Inter,Arial,sans-serif;font-size:10px;color:#000000;">
-                  majorworks.co
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- Simulated email context -->
+        <div class="bg-white rounded-[16px] overflow-hidden">
+          <div class="p-6 md:p-8 flex flex-col gap-[10px]">
+
+            <!-- Gray placeholder bars (email body simulation) -->
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[120px]"></div>
+            <div class="h-[10px]"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[220px]"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[380px] max-w-full"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[380px] max-w-full"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[440px] max-w-full"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[340px] max-w-full"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[300px] max-w-full"></div>
+            <div class="h-[6px]"></div>
+            <div class="bg-[#e2e2e2] h-[13px] rounded-full w-[160px]"></div>
+
+            <!-- Signature -->
+            <div class="mt-2">
+              <table id="sig-table" cellpadding="0" cellspacing="0" border="0"
+                style="background-color:#f2f2f2;padding:12px;width:280px;border-collapse:collapse;border-radius:12px;">
+                <tbody>
+                  <!-- Logos row -->
+                  <tr>
+                    <td style="padding-bottom:17px;">
+                      <table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;">
+                        <tbody>
+                          <tr>
+                            <td style="vertical-align:middle;">
+                              <img src="logo.svg" alt="Major Works" width="122" height="24" style="display:block;border:0;max-width:none;">
+                            </td>
+                            <td align="right" style="vertical-align:middle;">
+                              <img src="icon.svg" alt="" width="35" height="19" style="display:block;border:0;max-width:none;margin-left:auto;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <!-- Info row -->
+                  <tr>
+                    <td id="sig-info-cell"
+                      style="font-family:'Host Grotesk',Inter,Arial,sans-serif;font-size:10px;color:#000000;line-height:1.4;padding-bottom:17px;">
+                    </td>
+                  </tr>
+                  <!-- Email + Website row -->
+                  <tr>
+                    <td>
+                      <table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;">
+                        <tbody>
+                          <tr>
+                            <td id="sig-email-cell"
+                              style="font-family:'Host Grotesk',Inter,Arial,sans-serif;font-size:10px;color:#000000;">
+                            </td>
+                            <td align="right"
+                              style="font-family:'Host Grotesk',Inter,Arial,sans-serif;font-size:10px;color:#000000;white-space:nowrap;">
+                              majorworks.co
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
         </div>
 
         <p class="text-[11px] text-[#bbb] leading-[1.7]">
@@ -197,12 +232,15 @@
       lines.push('<strong style="font-weight:600;">' + escapeHtml(v.name || 'Prénom NOM') + '</strong>');
       if (v.role)  lines.push(escapeHtml(v.role));
       if (v.phone) lines.push(escapeHtml(v.phone));
-      if (v.email) lines.push('<a href="mailto:' + escapeHtml(v.email) + '" style="color:#000000;text-decoration:none;">' + escapeHtml(v.email) + '</a>');
       return lines.join('<br>');
     }
 
     function updatePreview() {
-      document.getElementById('sig-info-cell').innerHTML = buildInfoLines(getValues());
+      var v = getValues();
+      document.getElementById('sig-info-cell').innerHTML = buildInfoLines(v);
+      document.getElementById('sig-email-cell').innerHTML = v.email
+        ? '<a href="mailto:' + escapeHtml(v.email) + '" style="color:#000000;text-decoration:none;">' + escapeHtml(v.email) + '</a>'
+        : '';
     }
 
     ['field-name', 'field-role', 'field-phone', 'field-email'].forEach(function(id) {
@@ -213,6 +251,10 @@
 
     function buildSignatureHTML() {
       var v = getValues();
+      var emailCell = v.email
+        ? '<a href="mailto:' + escapeHtml(v.email) + '" style="color:#000000;text-decoration:none;">' + escapeHtml(v.email) + '</a>'
+        : '';
+
       return [
         '<table cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;padding:12px;width:280px;border-collapse:collapse;border-radius:12px;">',
         '<tbody>',
@@ -225,8 +267,13 @@
         '<tr><td style="font-family:\'Host Grotesk\',Inter,Arial,sans-serif;font-size:10px;color:#000000;line-height:1.4;padding-bottom:17px;">',
         buildInfoLines(v),
         '</td></tr>',
-        '<tr><td style="font-family:\'Host Grotesk\',Inter,Arial,sans-serif;font-size:10px;color:#000000;">',
+        '<tr><td>',
+        '<table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;"><tbody><tr>',
+        '<td style="font-family:\'Host Grotesk\',Inter,Arial,sans-serif;font-size:10px;color:#000000;">' + emailCell + '</td>',
+        '<td align="right" style="font-family:\'Host Grotesk\',Inter,Arial,sans-serif;font-size:10px;color:#000000;white-space:nowrap;">',
         '<a href="https://majorworks.co" style="color:#000000;text-decoration:none;">majorworks.co</a>',
+        '</td>',
+        '</tr></tbody></table>',
         '</td></tr>',
         '</tbody></table>'
       ].join('');
