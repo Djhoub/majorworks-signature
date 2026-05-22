@@ -237,7 +237,7 @@
 
     function buildInfoLines(v) {
       var lines = [];
-      lines.push('<strong style="font-weight:600;">' + escapeHtml(v.name || 'Prénom NOM') + '</strong>');
+      lines.push(escapeHtml(v.name || 'Prénom NOM'));
       if (v.role)  lines.push(escapeHtml(v.role));
       if (v.phone) lines.push(escapeHtml(v.phone));
       return lines.join('<br>');
