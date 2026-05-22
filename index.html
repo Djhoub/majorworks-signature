@@ -33,6 +33,13 @@
       .mw-text a, .mw-link { color: #f0f0f0 !important; }
       .mw-logo { filter: invert(1) !important; }
     }
+    .sim-dark .mw-bg { background-color: #1c1c1e !important; }
+    .sim-dark .mw-text { color: #f0f0f0 !important; }
+    .sim-dark .mw-text a, .sim-dark .mw-link { color: #f0f0f0 !important; }
+    .sim-dark .mw-logo { filter: invert(1) !important; }
+    .sim-dark .sim-email-bg { background-color: #1c1c1e !important; }
+    .sim-dark .sim-bar { background-color: #3a3a3c !important; }
+    #mode-toggle { transition: background 0.15s, color 0.15s; }
   </style>
 </head>
 <body class="bg-[#f0f0f0] min-h-screen">
@@ -150,23 +157,35 @@
       <!-- ─── PREVIEW ─── -->
       <div class="flex-1 w-full flex flex-col gap-4">
 
-        <p class="text-[11px] font-medium text-[#aaa] uppercase tracking-widest">Aperçu en temps réel</p>
+        <div class="flex items-center justify-between">
+          <p class="text-[11px] font-medium text-[#aaa] uppercase tracking-widest">Aperçu en temps réel</p>
+          <div class="flex bg-[#e8e8e8] rounded-full p-[3px] gap-[2px]">
+            <button onclick="setMode('light')" id="btn-light"
+              class="text-[11px] font-medium px-3 py-1 rounded-full bg-white text-black transition-all">
+              Light
+            </button>
+            <button onclick="setMode('dark')" id="btn-dark"
+              class="text-[11px] font-medium px-3 py-1 rounded-full text-[#888] transition-all">
+              Dark
+            </button>
+          </div>
+        </div>
 
         <!-- Simulated email context -->
-        <div class="bg-white rounded-[16px] overflow-hidden">
+        <div id="preview-wrapper" class="rounded-[16px] overflow-hidden sim-email-bg bg-white">
           <div class="p-6 md:p-8 flex flex-col gap-[10px]">
 
             <!-- Gray placeholder bars (email body simulation) -->
-            <div class="bg-[#d9d9d9] h-[17px] w-[144px]"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[144px]"></div>
             <div class="h-[16px]"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[281px] max-w-full"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[452px] max-w-full"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[452px] max-w-full"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[515px] max-w-full"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[430px] max-w-full"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[372px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[281px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[452px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[452px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[515px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[430px] max-w-full"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[372px] max-w-full"></div>
             <div class="h-[16px]"></div>
-            <div class="bg-[#d9d9d9] h-[17px] w-[191px]"></div>
+            <div class="sim-bar bg-[#d9d9d9] h-[17px] w-[191px]"></div>
             <div class="h-[24px]"></div>
 
             <!-- Signature -->
@@ -286,6 +305,25 @@
     });
 
     updatePreview();
+
+    function setMode(mode) {
+      var wrapper = document.getElementById('preview-wrapper');
+      var btnLight = document.getElementById('btn-light');
+      var btnDark  = document.getElementById('btn-dark');
+      if (mode === 'dark') {
+        wrapper.classList.add('sim-dark');
+        btnDark.classList.add('bg-[#3a3a3c]', 'text-white');
+        btnDark.classList.remove('text-[#888]');
+        btnLight.classList.remove('bg-white', 'text-black');
+        btnLight.classList.add('text-[#888]');
+      } else {
+        wrapper.classList.remove('sim-dark');
+        btnLight.classList.add('bg-white', 'text-black');
+        btnLight.classList.remove('text-[#888]');
+        btnDark.classList.remove('bg-[#3a3a3c]', 'text-white');
+        btnDark.classList.add('text-[#888]');
+      }
+    }
 
     function buildSignatureHTML() {
       var v = getValues();
