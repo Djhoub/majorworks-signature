@@ -300,9 +300,10 @@
 
     function updatePreview() {
       var v = getValues();
+      var linkColor = currentMode === 'dark' ? '#f0f0f0' : '#000000';
       document.getElementById('sig-info-cell').innerHTML = buildInfoLines(v);
       document.getElementById('sig-email-cell').innerHTML = v.email
-        ? '<a href="mailto:' + escapeHtml(v.email) + '" style="color:#000000;text-decoration:none;">' + escapeHtml(v.email) + '</a>'
+        ? '<a href="mailto:' + escapeHtml(v.email) + '" style="color:' + linkColor + ';text-decoration:none;">' + escapeHtml(v.email) + '</a>'
         : '';
     }
 
@@ -312,19 +313,38 @@
 
     updatePreview();
 
+    var currentMode = 'light';
+
     function setMode(mode) {
-      var wrapper   = document.getElementById('preview-wrapper');
-      var btnLight  = document.getElementById('btn-light');
-      var btnDark   = document.getElementById('btn-dark');
-      if (mode === 'dark') {
-        wrapper.classList.add('sim-dark');
-        btnDark.classList.add('active');
-        btnLight.classList.add('inactive');
-      } else {
-        wrapper.classList.remove('sim-dark');
-        btnLight.classList.remove('inactive');
-        btnDark.classList.remove('active');
-      }
+      currentMode = mode;
+      var isDark  = mode === 'dark';
+      var wrapper = document.getElementById('preview-wrapper');
+      wrapper.classList.toggle('sim-dark', isDark);
+
+      // Background signature
+      document.querySelectorAll('#preview-wrapper .mw-bg').forEach(function(el) {
+        el.style.setProperty('background-color', isDark ? '#2c2c2e' : '#f2f2f2', 'important');
+      });
+      // Texte + liens
+      document.querySelectorAll('#preview-wrapper .mw-text').forEach(function(el) {
+        el.style.setProperty('color', isDark ? '#f0f0f0' : '#000000', 'important');
+      });
+      document.querySelectorAll('#preview-wrapper .mw-text a, #preview-wrapper .mw-link').forEach(function(el) {
+        el.style.setProperty('color', isDark ? '#f0f0f0' : '#000000', 'important');
+      });
+      // Logos
+      document.querySelectorAll('#preview-wrapper .mw-logo').forEach(function(el) {
+        el.style.setProperty('filter', isDark ? 'invert(1)' : 'none', 'important');
+      });
+
+      // Boutons
+      var btnLight = document.getElementById('btn-light');
+      var btnDark  = document.getElementById('btn-dark');
+      btnLight.classList.toggle('inactive', isDark);
+      btnDark.classList.toggle('active', isDark);
+
+      // Re-render preview pour mettre à jour couleur des liens
+      updatePreview();
     }
 
     function buildSignatureHTML() {
