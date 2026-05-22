@@ -33,13 +33,19 @@
       .mw-text a, .mw-link { color: #f0f0f0 !important; }
       .mw-logo { filter: invert(1) !important; }
     }
-    .sim-dark .mw-bg { background-color: #1c1c1e !important; }
-    .sim-dark .mw-text { color: #f0f0f0 !important; }
-    .sim-dark .mw-text a, .sim-dark .mw-link { color: #f0f0f0 !important; }
-    .sim-dark .mw-logo { filter: invert(1) !important; }
-    .sim-dark .sim-email-bg { background-color: #1c1c1e !important; }
-    .sim-dark .sim-bar { background-color: #3a3a3c !important; }
-    #mode-toggle { transition: background 0.15s, color 0.15s; }
+    #preview-wrapper { background-color: #ffffff; transition: background-color 0.2s; }
+    #preview-wrapper.sim-dark { background-color: #1c1c1e; }
+    #preview-wrapper.sim-dark .sim-bar { background-color: #3a3a3c; }
+    #preview-wrapper.sim-dark .mw-bg { background-color: #2c2c2e !important; }
+    #preview-wrapper.sim-dark .mw-text { color: #f0f0f0 !important; }
+    #preview-wrapper.sim-dark .mw-text a,
+    #preview-wrapper.sim-dark .mw-link { color: #f0f0f0 !important; }
+    #preview-wrapper.sim-dark .mw-logo { filter: invert(1) !important; }
+    #btn-light, #btn-dark { transition: background 0.15s, color 0.15s; }
+    #btn-light { background: #ffffff; color: #000000; }
+    #btn-dark  { background: transparent; color: #888888; }
+    #btn-light.inactive { background: transparent; color: #888888; }
+    #btn-dark.active  { background: #3a3a3c; color: #ffffff; }
   </style>
 </head>
 <body class="bg-[#f0f0f0] min-h-screen">
@@ -172,7 +178,7 @@
         </div>
 
         <!-- Simulated email context -->
-        <div id="preview-wrapper" class="rounded-[16px] overflow-hidden sim-email-bg bg-white">
+        <div id="preview-wrapper" class="rounded-[16px] overflow-hidden">
           <div class="p-6 md:p-8 flex flex-col gap-[10px]">
 
             <!-- Gray placeholder bars (email body simulation) -->
@@ -307,21 +313,17 @@
     updatePreview();
 
     function setMode(mode) {
-      var wrapper = document.getElementById('preview-wrapper');
-      var btnLight = document.getElementById('btn-light');
-      var btnDark  = document.getElementById('btn-dark');
+      var wrapper   = document.getElementById('preview-wrapper');
+      var btnLight  = document.getElementById('btn-light');
+      var btnDark   = document.getElementById('btn-dark');
       if (mode === 'dark') {
         wrapper.classList.add('sim-dark');
-        btnDark.classList.add('bg-[#3a3a3c]', 'text-white');
-        btnDark.classList.remove('text-[#888]');
-        btnLight.classList.remove('bg-white', 'text-black');
-        btnLight.classList.add('text-[#888]');
+        btnDark.classList.add('active');
+        btnLight.classList.add('inactive');
       } else {
         wrapper.classList.remove('sim-dark');
-        btnLight.classList.add('bg-white', 'text-black');
-        btnLight.classList.remove('text-[#888]');
-        btnDark.classList.remove('bg-[#3a3a3c]', 'text-white');
-        btnDark.classList.add('text-[#888]');
+        btnLight.classList.remove('inactive');
+        btnDark.classList.remove('active');
       }
     }
 
