@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signature email — Major Works</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+    nav {
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeDown 0.5s ease forwards 0.05s;
+    }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeDown 0.6s ease forwards 0.2s;
+    }
+    @keyframes fadeDown {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #copy-btn { transition: background 0.15s, transform 0.1s; }
+    #copy-btn:active { transform: scale(0.98); }
+    #copy-btn.copied { background: #1a7a4a !important; }
+  </style>
+</head>
+<body class="bg-[#f0f0f0] min-h-screen">
+
+  <!-- NAV -->
+  <nav class="bg-white border-b border-[#e0e0e0] flex items-center gap-3 px-6 py-4 md:px-10 md:h-[72px] lg:px-[80px]">
+    <img src="logo.svg" alt="Major Works" class="h-[18px] md:h-[20px]">
+    <div class="bg-[#efefef] px-3 py-1.5 rounded-full">
+      <span class="text-[#808080] text-[11px] font-medium">SIGNATURE EMAIL</span>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <div class="fade-up max-w-[1100px] mx-auto px-6 py-12 md:px-10 md:py-16 lg:px-[80px] lg:py-20">
+
+    <h1 class="font-normal text-[38px] md:text-[54px] text-black tracking-[-0.5px] leading-[0.88] mb-14">
+      Créez votre<br>signature email
+    </h1>
+
+    <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start">
+
+      <!-- ─── FORM ─── -->
+      <div class="w-full lg:w-[380px] shrink-0 flex flex-col gap-6">
+
+        <p class="text-[11px] font-medium text-[#aaa] uppercase tracking-widest">Vos informations</p>
+
+        <div class="bg-white rounded-[16px] p-5 flex flex-col gap-4">
+
+          <div class="flex flex-col gap-1.5">
+            <label for="field-name" class="text-[11px] text-[#999]">Prénom Nom</label>
+            <input id="field-name" type="text" value="Thibault DARNEAU"
+              class="border border-[#ebebeb] bg-[#fafafa] rounded-[8px] px-3.5 py-2.5 text-[13px] text-black focus:border-black focus:outline-none transition-colors"
+              placeholder="Prénom NOM">
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="field-role" class="text-[11px] text-[#999]">Poste</label>
+            <input id="field-role" type="text" value="Cofondateur | Directeur de création"
+              class="border border-[#ebebeb] bg-[#fafafa] rounded-[8px] px-3.5 py-2.5 text-[13px] text-black focus:border-black focus:outline-none transition-colors"
+              placeholder="Poste / Titre">
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="field-phone" class="text-[11px] text-[#999]">Téléphone</label>
+            <input id="field-phone" type="text" value="+33 (0)6 26 46 74 47"
+              class="border border-[#ebebeb] bg-[#fafafa] rounded-[8px] px-3.5 py-2.5 text-[13px] text-black focus:border-black focus:outline-none transition-colors"
+              placeholder="+33 (0)6 XX XX XX XX">
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="field-email" class="text-[11px] text-[#999]">Email</label>
+            <div class="border border-[#ebebeb] bg-[#fafafa] rounded-[8px] flex items-center focus-within:border-black transition-colors overflow-hidden">
+              <input id="field-email" type="text" value="thibault.darneau"
+                class="flex-1 px-3.5 py-2.5 text-[13px] text-black bg-transparent focus:outline-none min-w-0"
+                placeholder="prenom.nom">
+              <span class="text-[13px] text-[#bbb] pr-3.5 shrink-0 select-none">@majorworks.co</span>
+            </div>
+          </div>
+
+        </div>
+
+        <button id="copy-btn" onclick="copySignature()"
+          class="bg-black text-white rounded-[10px] py-3.5 text-[13px] font-medium hover:bg-[#222] w-full">
+          Copier la signature
+        </button>
+
+        <!-- Instructions Gmail -->
+        <div class="bg-white rounded-[16px] p-5 flex flex-col gap-4">
+          <p class="text-[12px] font-semibold text-black">Comment l'ajouter dans Gmail</p>
+          <ol class="flex flex-col gap-3">
+            <li class="flex gap-2.5">
+              <span class="text-[11px] text-[#ccc] shrink-0 mt-[2px]">1.</span>
+              <span class="text-[12px] text-[#666] leading-[1.6]">Cliquez sur <strong class="text-black font-semibold">Copier la signature</strong></span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-[11px] text-[#ccc] shrink-0 mt-[2px]">2.</span>
+              <span class="text-[12px] text-[#666] leading-[1.6]">Gmail → <strong class="text-black font-semibold">Paramètres</strong> → <strong class="text-black font-semibold">Voir tous les paramètres</strong></span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-[11px] text-[#ccc] shrink-0 mt-[2px]">3.</span>
+              <span class="text-[12px] text-[#666] leading-[1.6]">Section <strong class="text-black font-semibold">Signature</strong> → créez ou éditez votre signature</span>
+            </li>
+            <li class="flex gap-2.5">
+              <span class="text-[11px] text-[#ccc] shrink-0 mt-[2px]">4.</span>
+              <span class="text-[12px] text-[#666] leading-[1.6]">Collez avec <strong class="text-black font-semibold">Cmd+V</strong> — la mise en forme est préservée</span>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- ─── PREVIEW ─── -->
+      <div class="flex-1 w-full flex flex-col gap-4">
+
+        <p class="text-[11px] font-medium text-[#aaa] uppercase tracking-widest">Aperçu en temps réel</p>
+
+        <div class="bg-white rounded-[16px] p-8 md:p-12 flex items-center justify-center min-h-[260px]">
+          <table id="sig-table" cellpadding="0" cellspacing="0" border="0"
+            style="background-color:#f2f2f2;padding:12px;width:280px;border-collapse:collapse;">
+            <tbody>
+              <tr>
+                <td style="padding-bottom:17px;">
+                  <table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align:middle;">
+                          <img src="logo.svg" alt="Major Works" width="122" height="24" style="display:block;border:0;max-width:none;">
+                        </td>
+                        <td align="right" style="vertical-align:middle;">
+                          <img src="icon.svg" alt="" width="35" height="19" style="display:block;border:0;max-width:none;margin-left:auto;">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td id="sig-info-cell"
+                  style="font-family:Inter,Arial,sans-serif;font-size:10px;color:#000000;line-height:1.7;padding-bottom:17px;">
+                </td>
+              </tr>
+              <tr>
+                <td style="font-family:Inter,Arial,sans-serif;font-size:10px;color:#000000;">
+                  majorworks.co
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-[11px] text-[#bbb] leading-[1.7]">
+          Aperçu représentatif. Le rendu peut légèrement varier selon le client mail.
+          Les images sont servies depuis <span class="text-[#999] font-medium">majorworks.co</span> une fois le domaine configuré.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="max-w-[1100px] mx-auto px-6 pb-10 md:px-10 lg:px-[80px]">
+    <p class="text-[11px] text-[#bbb]">© Major Works</p>
+  </footer>
+
+  <script>
+    var BASE_URL = 'https://majorworks.co';
+
+    function getValues() {
+      var emailPrefix = document.getElementById('field-email').value.trim();
+      return {
+        name:  document.getElementById('field-name').value.trim(),
+        role:  document.getElementById('field-role').value.trim(),
+        phone: document.getElementById('field-phone').value.trim(),
+        email: emailPrefix ? emailPrefix + '@majorworks.co' : ''
+      };
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function buildInfoLines(v) {
+      var lines = [];
+      lines.push('<strong style="font-weight:600;">' + escapeHtml(v.name || 'Prénom NOM') + '</strong>');
+      if (v.role)  lines.push(escapeHtml(v.role));
+      if (v.phone) lines.push(escapeHtml(v.phone));
+      if (v.email) lines.push('<a href="mailto:' + escapeHtml(v.email) + '" style="color:#000000;text-decoration:none;">' + escapeHtml(v.email) + '</a>');
+      return lines.join('<br>');
+    }
+
+    function updatePreview() {
+      document.getElementById('sig-info-cell').innerHTML = buildInfoLines(getValues());
+    }
+
+    ['field-name', 'field-role', 'field-phone', 'field-email'].forEach(function(id) {
+      document.getElementById(id).addEventListener('input', updatePreview);
+    });
+
+    updatePreview();
+
+    function buildSignatureHTML() {
+      var v = getValues();
+      return [
+        '<table cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;padding:12px;width:280px;border-collapse:collapse;">',
+        '<tbody>',
+        '<tr><td style="padding-bottom:17px;">',
+        '<table cellpadding="0" cellspacing="0" border="0" style="width:256px;border-collapse:collapse;"><tbody><tr>',
+        '<td style="vertical-align:middle;"><img src="' + BASE_URL + '/logo.svg" alt="Major Works" width="122" height="24" style="display:block;border:0;"></td>',
+        '<td align="right" style="vertical-align:middle;"><img src="' + BASE_URL + '/icon.svg" alt="" width="35" height="19" style="display:block;border:0;margin-left:auto;"></td>',
+        '</tr></tbody></table>',
+        '</td></tr>',
+        '<tr><td style="font-family:Inter,Arial,sans-serif;font-size:10px;color:#000000;line-height:1.7;padding-bottom:17px;">',
+        buildInfoLines(v),
+        '</td></tr>',
+        '<tr><td style="font-family:Inter,Arial,sans-serif;font-size:10px;color:#000000;">',
+        '<a href="https://majorworks.co" style="color:#000000;text-decoration:none;">majorworks.co</a>',
+        '</td></tr>',
+        '</tbody></table>'
+      ].join('');
+    }
+
+    function copySignature() {
+      var html = buildSignatureHTML();
+      var btn  = document.getElementById('copy-btn');
+
+      function onSuccess() {
+        btn.textContent = '✓ Signature copiée !';
+        btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = 'Copier la signature';
+          btn.classList.remove('copied');
+        }, 2500);
+      }
+
+      if (window.ClipboardItem) {
+        var blob = new Blob([html], { type: 'text/html' });
+        navigator.clipboard.write([new ClipboardItem({ 'text/html': blob })])
+          .then(onSuccess)
+          .catch(function() { navigator.clipboard.writeText(html).then(onSuccess); });
+      } else {
+        navigator.clipboard.writeText(html).then(onSuccess);
+      }
+    }
+  </script>
+
+</body>
+</html>
