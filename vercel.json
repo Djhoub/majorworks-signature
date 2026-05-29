@@ -7,9 +7,8 @@
       "destination": "/home.html"
     },
     {
-      "source": "/index.html",
-      "has": [{ "type": "host", "value": "majorworks.co" }],
-      "destination": "/home.html"
+      "source": "/(.*)",
+      "destination": "/signature.html"
     }
   ]
 }
